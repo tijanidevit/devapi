@@ -1,0 +1,28 @@
+{
+    "name": "tijanidevit/devapi",
+    "description": "A package to help api developers easily create well structured codebase (requests, controllers, services, etc)",
+    "type": "library",
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^11.0@dev",
+        "illuminate/console": "^11.0@dev",
+        "illuminate/http": "^11.0@dev",
+        "illuminate/routing": "^11.0@dev"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Tijanidevit\\DevApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mustapha Tijani",
+            "email": "thenewxpat@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "bin": [
+        "bin/make-api"
+    ]
+}

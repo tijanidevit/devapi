@@ -1,0 +1,54 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\Http\Controllers\Controller;
+use DummyServiceNamespace\DummyService;
+use DummyRequestNamespace\StoreDummyRequest;
+use DummyRequestNamespace\UpdateDummyRequest;
+use DummyResponseNamespace\DummyResource;
+
+class DummyClass extends Controller
+{
+    protected $service;
+
+    public function __construct(DummyService $service)
+    {
+        $this->service = $service;
+    }
+
+    public function index()
+    {
+        $response = $this->service->all();
+
+        return response()->json($response['data'], $response['status']);
+    }
+
+    public function show($id)
+    {
+        $response = $this->service->find($id);
+
+        return response()->json($response['data'], $response['status']);
+    }
+
+    public function store(StoreDummyRequest $request)
+    {
+        $response = $this->service->create($request->all());
+
+        return response()->json($response['data'], $response['status']);
+    }
+
+    public function update(UpdateDummyRequest $request, $id)
+    {
+        $response = $this->service->update($id, $request->all());
+
+        return response()->json($response['data'], $response['status']);
+    }
+
+    public function destroy($id)
+    {
+        $response = $this->service->delete($id);
+
+        return response()->json($response['data'], $response['status']);
+    }
+}

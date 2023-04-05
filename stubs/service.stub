@@ -1,0 +1,73 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyModelNamespace\DummyModel;
+
+class DummyClass
+{
+    protected $model;
+
+    public function __construct(DummyModel $model)
+    {
+        $this->model = $model;
+    }
+
+    public function all()
+    {
+        $items = $this->model->all();
+        return $this->successResponse($items);
+    }
+
+    public function find($id)
+    {
+        $item = $this->model->find($id);
+
+        if (!$item) {
+            return $this->errorResponse("Item not found", 404);
+        }
+
+        return $this->successResponse($item);
+    }
+
+    public function create(array $data)
+    {
+        $item = $this->model->create($data);
+
+        return $this->successResponse($item, "Item created successfully", 201);
+    }
+
+    public function update($id, array $data)
+    {
+        $item = $this->model->find($id);
+
+        if (!$item) {
+            return $this->errorResponse("Item not found", 404);
+        }
+
+        $item->update($data);
+
+        return $this->successResponse($item, "Item updated successfully");
+    }
+
+    public function delete($id)
+    {
+        $item = $this->model->find($id);
+
+        if (!$item) {
+            return $this->errorResponse("Item not found", 404);
+        }
+
+        $item->delete();
+
+        return $this->successResponse(null, "Item deleted successfully");
+    }
+
+    public function logError(\Throwable $exception)
+    {
+        Log::error($exception->getMessage(), [
+            'exception' => $exception,
+            'trace' => $exception->getTraceAsString()
+        ]);
+    }
+}

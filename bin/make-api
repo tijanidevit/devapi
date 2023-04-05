@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+
+use Tijanidevit\DevApi\Src\GenerateClasses\GenerateClasses;
+
+require __DIR__.'/../vendor/autoload.php';
+
+
+$generator = new GenerateClasses("Tijanidevit\DevApi");
+
+$resourceName = $argv[1];
+
+$generator->generate($resourceName);

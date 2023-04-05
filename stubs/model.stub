@@ -1,0 +1,16 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Database\Eloquent\Model;
+
+class DummyClass extends Model
+{
+    protected $fillable = [
+        // Add fillable fields here
+    ];
+
+    protected $relationships = [
+        // Add relationships fields here
+    ];
+}
